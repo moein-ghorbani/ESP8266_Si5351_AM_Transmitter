@@ -1,24 +1,33 @@
-# ESP8266 Si5351 AM Transmitter
+# Si5351 AM Transmitter
 
-[![PlatformIO CI](https://github.com/yourusername/ESP8266_Si5351_AM_Transmitter/actions/workflows/platformio.yml/badge.svg)](https://github.com/yourusername/ESP8266_Si5351_AM_Transmitter/actions/workflows/platformio.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![ESP8266](https://img.shields.io/badge/ESP8266-NodeMCU-blue)](https://www.espressif.com/en/products/socs/esp8266)
+ESP8266 + Si5351 based AM transmitter with real audio playback via PWM
 
-**Real AM Modulator using Si5351 + PWM Audio | Web-based Frequency Control**
+## Hardware
+- ESP8266 (NodeMCU)
+- Si5351 Clock Generator
+- ADE-1 Mixer (or any diode ring mixer)
 
----
+## Wiring
+| ESP8266 | Si5351 | ADE-1 |
+|---------|--------|-------|
+| GPIO1 (TX) | CLK0 | RF In |
+| GPIO14 (D5) | - | LO/IF In |
+| GND | GND | GND |
 
-## 🎯 Features
+## Features
+- Web UI for frequency control (10kHz - 160MHz)
+- Real melody playback via PWM on GPIO14
+- Volume control
+- EEPROM frequency storage
 
-- ✅ **Si5351 Clock Generator** – RF carrier from 10kHz to 160MHz
-- ✅ **Real Audio via PWM** – GPIO14 outputs actual musical notes (262Hz–523Hz)
-- ✅ **Web Interface** – Real-time frequency control with Hz/kHz/MHz units
-- ✅ **Preset Frequencies** – 10kHz, 100kHz, 1MHz, 10MHz, 50MHz, 100MHz
-- ✅ **Volume Control** – Adjustable PWM amplitude (0–100%)
-- ✅ **EEPROM Storage** – Last frequency saved after 5 seconds of inactivity
-- ✅ **WiFi Auto-Reconnect** – Connects to `SSHP` network only (no AP fallback)
-- ✅ **2mA Output Drive** – Cleaner signal, reduced harmonics
+## Usage
+1. Upload code to ESP8266
+2. Connect to WiFi: `ESP_Si5351_AP` (password: `12345678`)
+3. Open browser: `http://192.168.4.1`
+4. Set carrier frequency and start melody
+5. Connect outputs to ADE-1 mixer for AM modulation
 
----
-
-## 📡 How It Works
+## Notes
+- Si5351 output: 2mA drive strength
+- PWM frequency: 40kHz (above audible range)
+- Audio frequency range: 262Hz - 523Hz
