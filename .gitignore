@@ -1,0 +1,7 @@
+*.ino.previous
+*.ino.with_bootloader.bin
+/.vscode/
+/.idea/
+*.dSYM/
+*.elf
+*.o
